@@ -30,7 +30,7 @@ class PhotoConversion:
                          width=3072)
 
     @staticmethod
-    def cubemaptoequirectangularequirectangular(image):
+    def cubemaptoequirectangular(image):
         # Loads image
         target_image = Image.open(image)
         target_image = np.asarray(target_image)
