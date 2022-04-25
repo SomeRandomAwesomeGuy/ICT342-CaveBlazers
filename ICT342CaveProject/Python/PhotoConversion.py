@@ -14,25 +14,23 @@ from equilib import cube2equi
 """
 
 
-
-
 class PhotoConversion:
     # Toolbox for converting images between equirectangular and panoramic modes
 
     @staticmethod
-    def equirectangulartoequirectangualar (image):
+    def equirectangulartoequirectangular(image):
         # Loads image
         target_image = Image.open(image)
         target_image = np.asarray(target_image)
         target_image = np.transpose(target_image, (2, 0, 1))
 
-        # Converts between equirectangulars
+        # Converts between equirectangualar
         return equi2equi(cubemap=target_image,
                          height=30735,
                          width=3072)
 
     @staticmethod
-    def cubemaptoequirectangualar (image):
+    def cubemaptoequirectangularequirectangular(image):
         # Loads image
         target_image = Image.open(image)
         target_image = np.asarray(target_image)
@@ -43,18 +41,19 @@ class PhotoConversion:
                          height=30735,
                          width=3072)
 
-    def croptoshape (image):
-        # Crop Equirectangular Images to the correct dimensions
+    def crop(image):
+        return
+        # Crop equirectangular Images to the correct dimensions
 
 
 """
 Complete Panoramics
 Step 1,
-Step 2, Convert to equirecctanglar
+Step 2, Convert to equirectangular
 
 """
 
 
 converter = PhotoConversion()
-converter.equirectangulartoequirectangualar()
+converter.equirectangulartoequirectangular()
 
