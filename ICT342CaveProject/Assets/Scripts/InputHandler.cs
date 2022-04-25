@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour {
 
+	public float RotationSpeed = 1;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,11 +16,11 @@ public class InputHandler : MonoBehaviour {
 		//rotate the shape with "A" & "D"
 		if (Input.GetAxisRaw("Horizontal") > 0)
         {
-
+			transform.Rotate(0f, RotationSpeed, 0, Space.Self);
         }else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-
-        }
+			transform.Rotate(0f, RotationSpeed*-1, 0, Space.Self);
+		}
 
 		//switch image with "W" & "S"
 		if (Input.GetAxisRaw("Vertical") > 0)
