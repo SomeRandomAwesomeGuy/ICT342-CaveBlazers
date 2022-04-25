@@ -5,9 +5,12 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour {
 
 	public float RotationSpeed = 1;
+	public ArrayCompiler arrayCompiler;
+
+	int ArrayPoint = 0;
 	// Use this for initialization
 	void Start () {
-		
+		arrayCompiler.GetListPoint(ArrayPoint);
 	}
 	
 	// Update is called once per frame
@@ -25,11 +28,11 @@ public class InputHandler : MonoBehaviour {
 		//switch image with "W" & "S"
 		if (Input.GetAxisRaw("Vertical") > 0)
 		{
-
+			arrayCompiler.GetListPoint(ArrayPoint++);
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0)
 		{
-
+			arrayCompiler.GetListPoint(ArrayPoint--);
 		}
 
 		if (Input.GetAxisRaw("Exit") > 0)

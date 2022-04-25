@@ -32,10 +32,19 @@ public class ArrayCompiler : MonoBehaviour {
 				List[ArrayLength++] = Display;
             }
         }
-	}
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public object GetListPoint(int PointOfArray)
+    {
+		while (PointOfArray >= ArrayLength)
+        {
+			PointOfArray -= ArrayLength;
+        }
+
+		while (PointOfArray < 0)
+        {
+			PointOfArray += ArrayLength;
+		}
+		return PointOfArray;
+    }
 }
