@@ -31,5 +31,10 @@ public class InputHandler : MonoBehaviour {
 		{
 
 		}
+
+		if (Input.GetAxisRaw("Exit") > 0)
+        {
+			Application.Quit();
+        }
 	}
 }
