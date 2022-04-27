@@ -13,9 +13,10 @@ public class InputHandler : MonoBehaviour {
 	int ArrayPoint = 0;
 	// Use this for initialization
 	void Start () {
-		arrayCompiler.GetListPoint(ArrayPoint);
+		Display = arrayCompiler.GetListPoint(ArrayPoint);
 
 		IMGComponent = this.GetComponent<Image> ();
+		IMGComponent.sprite = Display;
 	}
 	
 	// Update is called once per frame
