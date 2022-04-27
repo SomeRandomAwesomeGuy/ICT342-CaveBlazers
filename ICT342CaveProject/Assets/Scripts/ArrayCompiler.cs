@@ -1,23 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArrayCompiler : MonoBehaviour {
 
-	object[] List;
+	Sprite[] List;
 	bool check = false;
 	int ArrayLength;
 	// Use this for initialization
 	void Start () {
 		//loads all objects in the folder and goes through each
-		foreach (object Display in Resources.LoadAll("Assets/Displays"))
+		foreach (Sprite Display in Resources.LoadAll("Assets/Displays"))
         {
 			//resets variables for each iteration of the loop
 			ArrayLength = List.Length;
 			check = false;
 
 			//check that the object is not already in the array
-			foreach (object Saved in List)
+			foreach (Sprite Saved in List)
             {
 				if (Display == Saved)
                 {
@@ -34,17 +35,25 @@ public class ArrayCompiler : MonoBehaviour {
         }
     }
 	
-	public object GetListPoint(int PointOfArray)
+	public Sprite GetListPoint(int PointOfArray)
     {
-		while (PointOfArray >= ArrayLength)
+		if(ArrayLength > 1)
         {
-			PointOfArray -= ArrayLength;
-        }
+			while (PointOfArray >= ArrayLength)
+			{
+				PointOfArray -= ArrayLength;
+			}
 
-		while (PointOfArray < 0)
-        {
-			PointOfArray += ArrayLength;
+			while (PointOfArray < 0)
+			{
+				PointOfArray += ArrayLength;
+			}
 		}
-		return PointOfArray;
+        else
+        {
+			PointOfArray = 0;
+        }
+			
+		return List[PointOfArray];
     }
 }

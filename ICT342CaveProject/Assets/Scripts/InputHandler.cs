@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour {
 
 	public float RotationSpeed = 1;
 	public ArrayCompiler arrayCompiler;
+	Sprite Display;
+	private Image IMGComponent;
 
 	int ArrayPoint = 0;
 	// Use this for initialization
 	void Start () {
 		arrayCompiler.GetListPoint(ArrayPoint);
+
+		IMGComponent = this.GetComponent<Image> ();
 	}
 	
 	// Update is called once per frame
@@ -28,11 +33,14 @@ public class InputHandler : MonoBehaviour {
 		//switch image with "W" & "S"
 		if (Input.GetAxisRaw("Vertical") > 0)
 		{
-			arrayCompiler.GetListPoint(ArrayPoint++);
+			Display = arrayCompiler.GetListPoint(ArrayPoint++);
+			IMGComponent.sprite = Display;
+
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0)
 		{
-			arrayCompiler.GetListPoint(ArrayPoint--);
+			Display = arrayCompiler.GetListPoint(ArrayPoint--);
+			IMGComponent.sprite = Display;
 		}
 
 		if (Input.GetAxisRaw("Exit") > 0)
