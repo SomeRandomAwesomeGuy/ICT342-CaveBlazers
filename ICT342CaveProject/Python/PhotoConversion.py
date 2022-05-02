@@ -18,41 +18,46 @@ class PhotoConversion:
     # Toolbox for converting images between equirectangular and panoramic modes
 
     @staticmethod
-    def equirectangular_to_equirectangular(image):
-        # Loads image
+    def load_image(image):
         target_image = Image.open(image)
         target_image = np.asarray(target_image)
         target_image = np.transpose(target_image, (2, 0, 1))
+        return target_image
 
+    @staticmethod
+    def save_image(image, path):
+        image.save(path)
+
+    @staticmethod
+    def equirectangular_to_equirectangular(image):
         # Converts between equirectangualar
-        return equi2equi(cubemap=target_image,
+        return equi2equi(cubemap=image,
                          height=30735,
                          width=3072)
 
     @staticmethod
     def cubemap_to_equirectangular(image):
-        # Loads image
-        target_image = Image.open(image)
-        target_image = np.asarray(target_image)
-        target_image = np.transpose(target_image, (2, 0, 1))
-
         # Converts the cubemap into an equirectangular
-        return cube2equi(cubemap=target_image,
+        return cube2equi(cubemap=image,
                          height=30735,
                          width=3072)
 
     @staticmethod
     def crop_equirectangular(image):
-        target_image = Image.open(image)
-        target_image = np.asarray(target_image)
-        target_image = np.transpose(target_image, (2, 0, 1))
+        # Crops image in line
+        width, height = image.size
 
-        width, height = target_image.size
+        image = image.crop((0, (height/2)+(width/10) , width , (height/2)-(width/10)))
 
-        target_image = target_image.crop((0, (height/2)+(width/10) , width , (height/2)-(width/10)))
-
-        return target_image
+        return image
         # Crop equirectangular Images to the correct dimensions
+
+    @staticmethod
+    def crop_rectilinear(image):
+        width, height = image.size
+        ratio = height/width
+
+        return image
 
 
 """
