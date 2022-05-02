@@ -18,7 +18,7 @@ class PhotoConversion:
     # Toolbox for converting images between equirectangular and panoramic modes
 
     @staticmethod
-    def equirectangulartoequirectangular(image):
+    def equirectangular_to_equirectangular(image):
         # Loads image
         target_image = Image.open(image)
         target_image = np.asarray(target_image)
@@ -30,7 +30,7 @@ class PhotoConversion:
                          width=3072)
 
     @staticmethod
-    def cubemaptoequirectangular(image):
+    def cubemap_to_equirectangular(image):
         # Loads image
         target_image = Image.open(image)
         target_image = np.asarray(target_image)
@@ -41,19 +41,29 @@ class PhotoConversion:
                          height=30735,
                          width=3072)
 
-    def crop(image):
-        return
+    @staticmethod
+    def crop_equirectangular(image):
+        target_image = Image.open(image)
+        target_image = np.asarray(target_image)
+        target_image = np.transpose(target_image, (2, 0, 1))
+
+        width, height = target_image.size
+
+        target_image = target_image.crop((0, (height/2)+(width/10) , width , (height/2)-(width/10)))
+
+        return target_image
         # Crop equirectangular Images to the correct dimensions
 
 
 """
 Complete Panoramics
-Step 1,
-Step 2, Convert to equirectangular
+Step 1, Convert to equirectangular
+Step 2, Crop to 10:1 aspect ratio
+Step 3, Upscale image
 
 """
 
 
 converter = PhotoConversion()
-converter.equirectangulartoequirectangular()
+converter.crop_equirectangular()
 
