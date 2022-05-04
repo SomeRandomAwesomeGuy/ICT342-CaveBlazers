@@ -229,7 +229,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 4fe4cf200411c5443894301b209d0ee3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 957b72cc4a218064ebca5e41ce0631cf, type: 2}
+      objectReference: {fileID: 2100000, guid: a732caa7d4992c4439aa1897af8feda2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fe4cf200411c5443894301b209d0ee3, type: 3}
   m_IsPrefabAsset: 0
@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d7c8c3ce7d1b941a638b878ca60695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  List: []
 --- !u!114 &176643990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 1
-  arrayCompiler: {fileID: 0}
+  arrayCompiler: {fileID: 176643989}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
