@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputHandler : MonoBehaviour {
 
 	public float RotationSpeed = 1;
 	public ArrayCompiler arrayCompiler;
-	Material Display;
+	Sprite Display;
+	private Image IMGComponent;
+	
 
 	int ArrayPoint = 0;
 	// Use this for initialization
 	void Start () {
-		/*Display = arrayCompiler.GetListPoint(ArrayPoint);
+		Display = arrayCompiler.GetListPoint(ArrayPoint);
 
 		IMGComponent = this.GetComponent<Image> ();
-		IMGComponent.sprite = Display;*/
+		Display = arrayCompiler.GetListPoint(0);
+
+		
+		IMGComponent.sprite = Display;
 	}
 	
 	// Update is called once per frame
@@ -33,13 +39,13 @@ public class InputHandler : MonoBehaviour {
 		if (Input.GetAxisRaw("Vertical") > 0)
 		{
 			Display = arrayCompiler.GetListPoint(ArrayPoint++);
-			this.GetComponent<Renderer>().material = Display;
+			IMGComponent.sprite = Display;
 
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0)
 		{
 			Display = arrayCompiler.GetListPoint(ArrayPoint--);
-			this.GetComponent<Renderer>().material = Display;
+			IMGComponent.sprite = Display;
 		}
 
 		if (Input.GetAxisRaw("Exit") > 0)

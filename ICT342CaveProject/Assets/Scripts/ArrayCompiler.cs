@@ -1,25 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArrayCompiler : MonoBehaviour {
 
-	public Material[] List;
+	public Sprite[] List;
 	bool check = false;
 	int ArrayLength;
-	Material Display;
+	public Sprite alt;
+	Sprite Display;
 
 	// Use this for initialization
 	void Start () {
+
+		List[0] = alt;
+		
 		//loads all objects in the folder and goes through each
-		foreach (Material DisplayToBe in Resources.LoadAll("Assets/Displays"))
+		foreach (Sprite DisplayToBe in Resources.LoadAll("Assets/Displays"))
         {
+			Debug.Log("run array fill");
+
 			//resets variables for each iteration of the loop
-			ArrayLength = List.Length;
+			ArrayLength = List.Length - 1;
 			check = false;
 
 			//check that the object is not already in the array
-			foreach (Material Saved in List)
+			foreach (Sprite Saved in List)
             {
 				if (DisplayToBe == Saved)
                 {
@@ -34,12 +41,9 @@ public class ArrayCompiler : MonoBehaviour {
 				List[ArrayLength++] = DisplayToBe;
             }
         }
-
-		Display = GetListPoint(0);
-		this.GetComponent<Renderer>().material = Display;
 	}
 	
-	public Material GetListPoint(int PointOfArray)
+	public Sprite GetListPoint(int PointOfArray)
     {
 		if(ArrayLength > 1)
         {
@@ -57,7 +61,14 @@ public class ArrayCompiler : MonoBehaviour {
         {
 			PointOfArray = 0;
         }
-			
-		return List[PointOfArray];
+
+        Display = List[PointOfArray];
+
+		if (Display == null)
+		{
+			Display = alt;
+		}
+
+		return Display;
     }
 }
