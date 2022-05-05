@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArrayCompiler : MonoBehaviour {
 
-	public Sprite[] List;
+	List<Sprite> DisplayList = new List<Sprite>();
 	bool check = false;
 	int ArrayLength;
 	public Sprite alt;
@@ -13,8 +13,9 @@ public class ArrayCompiler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log("start the compilation");
 
-		List[0] = alt;
+		DisplayList.Insert(0, alt);
 		
 		//loads all objects in the folder and goes through each
 		foreach (Sprite DisplayToBe in Resources.LoadAll("Assets/Displays"))
@@ -22,11 +23,11 @@ public class ArrayCompiler : MonoBehaviour {
 			Debug.Log("run array fill");
 
 			//resets variables for each iteration of the loop
-			ArrayLength = List.Length - 1;
+			ArrayLength = DisplayList.Count - 1;
 			check = false;
 
 			//check that the object is not already in the array
-			foreach (Sprite Saved in List)
+			foreach (Sprite Saved in DisplayList)
             {
 				if (DisplayToBe == Saved)
                 {
@@ -38,7 +39,7 @@ public class ArrayCompiler : MonoBehaviour {
 			//if object is not in the array then add it
 			if (check == false)
             {
-				List[ArrayLength++] = DisplayToBe;
+				DisplayList.Insert(ArrayLength++, DisplayToBe);
             }
         }
 	}
@@ -62,7 +63,7 @@ public class ArrayCompiler : MonoBehaviour {
 			PointOfArray = 0;
         }
 
-        Display = List[PointOfArray];
+        Display = DisplayList[PointOfArray];
 
 		if (Display == null)
 		{
