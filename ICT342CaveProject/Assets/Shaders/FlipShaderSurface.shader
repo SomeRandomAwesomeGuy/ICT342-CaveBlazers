@@ -6,7 +6,7 @@
 
             Tags { "RenderType" = "Opaque" }
 
-            Cull Off
+            Cull Front
 
             CGPROGRAM
 

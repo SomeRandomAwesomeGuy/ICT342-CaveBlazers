@@ -7,7 +7,7 @@ public class InputHandler : MonoBehaviour {
 
 	public float RotationSpeed = 1;
 	public ArrayCompiler arrayCompiler;
-	Material Display;
+	Texture Display;
 	Renderer rend;
 	bool BTNDown;
 
@@ -17,12 +17,9 @@ public class InputHandler : MonoBehaviour {
 		rend = GetComponent<Renderer>();
 		rend.enabled = true;
 		Display = arrayCompiler.GetListPoint(0);
-		rend.sharedMaterial = Display;
-
-		
-		//IMGComponent.sprite = Display;
+		rend.material.SetTexture("_MainTex", Display);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -40,7 +37,7 @@ public class InputHandler : MonoBehaviour {
 		{
 			Debug.Log("Searching for next image");
 			Display = arrayCompiler.GetListPoint(ArrayPoint++);
-			rend.sharedMaterial = Display;
+			rend.material.SetTexture("_MainTex", Display);
 			BTNDown = true;
 
 		}
@@ -48,7 +45,7 @@ public class InputHandler : MonoBehaviour {
 		{
 			Debug.Log("Searching for previous image");
 			Display = arrayCompiler.GetListPoint(ArrayPoint--);
-			rend.sharedMaterial = Display;
+			rend.material.SetTexture("_MainTex", Display);
 			BTNDown = true;
 		}
 		else if (Input.GetAxisRaw("Vertical") == 0 && BTNDown == true)

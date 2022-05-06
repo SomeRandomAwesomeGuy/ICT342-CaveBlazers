@@ -5,17 +5,17 @@ using System.Linq;
 
 public class ArrayCompiler : MonoBehaviour {
 
-	public List<Material> DisplayList = new List<Material>();
+	public List<Texture> DisplayList = new List<Texture>();
 	bool check = false;
 	int ListLength;
-	public Material alt;
-	Material Display;
+	public Texture alt;
+	Texture Display;
 
 	// Use this for initialization
 	void Start () {
 		Debug.Log("start the compilation");
 
-		var loadedObjects = Resources.LoadAll("Displays", typeof(Material));
+		var loadedObjects = Resources.LoadAll("Displays", typeof(Texture));
 
 		//loads all objects in the folder and goes through each
 		foreach (var DisplayToBe in loadedObjects)
@@ -39,7 +39,7 @@ public class ArrayCompiler : MonoBehaviour {
 			//if object is not in the array then add it
 			if (check == false)
             {
-				DisplayList.Add(DisplayToBe as Material);
+				DisplayList.Add(DisplayToBe as Texture);
             }
         }
 
@@ -47,7 +47,7 @@ public class ArrayCompiler : MonoBehaviour {
 		//DisplayList.Add(alt);
 	}
 	
-	public Material GetListPoint(int PointOfArray)
+	public Texture GetListPoint(int PointOfArray)
     {
 		if(ListLength > 1)
         {

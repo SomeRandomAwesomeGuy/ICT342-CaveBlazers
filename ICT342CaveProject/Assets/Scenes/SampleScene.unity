@@ -211,7 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d7c8c3ce7d1b941a638b878ca60695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alt: {fileID: 2100000, guid: aeb1f5899b0f1ea438ba3b55fda59ccf, type: 2}
+  DisplayList: []
+  alt: {fileID: 2800000, guid: 97c242e72a8920a4295f9bd02744df76, type: 3}
 --- !u!114 &176643990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +242,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 957b72cc4a218064ebca5e41ce0631cf, type: 2}
   - {fileID: 2100000, guid: 957b72cc4a218064ebca5e41ce0631cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
