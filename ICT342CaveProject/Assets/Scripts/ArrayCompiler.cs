@@ -5,9 +5,9 @@ using System.Linq;
 
 public class ArrayCompiler : MonoBehaviour {
 
-	List<Material> DisplayList = new List<Material>();
+	public List<Material> DisplayList = new List<Material>();
 	bool check = false;
-	int ArrayLength;
+	int ListLength;
 	public Material alt;
 	Material Display;
 
@@ -15,14 +15,13 @@ public class ArrayCompiler : MonoBehaviour {
 	void Start () {
 		Debug.Log("start the compilation");
 
-		DisplayList.Insert(0, alt);
-
-		var loadedObjects = Resources.LoadAll("Displays");
+		var loadedObjects = Resources.LoadAll("Displays", typeof(Material));
 
 		//loads all objects in the folder and goes through each
-		foreach (Material DisplayToBe in loadedObjects)
+		foreach (var DisplayToBe in loadedObjects)
         {
-			Debug.Log("run array fill");
+			Debug.Log("run loop");
+			Debug.Log("add" + DisplayToBe.name);
 
 			//resets variables for each iteration of the loop
 			check = false;
@@ -40,27 +39,32 @@ public class ArrayCompiler : MonoBehaviour {
 			//if object is not in the array then add it
 			if (check == false)
             {
-				DisplayList.Add(DisplayToBe);
+				DisplayList.Add(DisplayToBe as Material);
             }
         }
+
+		ListLength = DisplayList.Count;
+		//DisplayList.Add(alt);
 	}
 	
 	public Material GetListPoint(int PointOfArray)
     {
-		if(ArrayLength > 1)
+		if(ListLength > 1)
         {
-			while (PointOfArray > ArrayLength)
+			Debug.Log("list greater than one");
+			while (PointOfArray > (ListLength-1))
 			{
-				PointOfArray -= ArrayLength;
+				PointOfArray -= ListLength;
 			}
 
 			while (PointOfArray < 0)
 			{
-				PointOfArray += ArrayLength;
+				PointOfArray += ListLength;
 			}
 		}
         else
         {
+			Debug.Log("list at one");
 			PointOfArray = 0;
         }
 
