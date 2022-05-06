@@ -9,13 +9,11 @@ public class InputHandler : MonoBehaviour {
 	public ArrayCompiler arrayCompiler;
 	Material Display;
 	Renderer rend;
-	
+	bool BTNDown;
 
 	int ArrayPoint = 0;
 	// Use this for initialization
 	void Start () {
-		Display = arrayCompiler.GetListPoint(ArrayPoint);
-
 		rend = GetComponent<Renderer>();
 		rend.enabled = true;
 		Display = arrayCompiler.GetListPoint(0);
@@ -38,16 +36,24 @@ public class InputHandler : MonoBehaviour {
 		}
 
 		//switch image with "W" & "S"
-		if (Input.GetAxisRaw("Vertical") > 0)
+		if (Input.GetAxisRaw("Vertical") > 0 && BTNDown == false)
 		{
+			Debug.Log("Searching for next image");
 			Display = arrayCompiler.GetListPoint(ArrayPoint++);
 			rend.sharedMaterial = Display;
+			BTNDown = true;
 
 		}
-		else if (Input.GetAxisRaw("Vertical") < 0)
+		else if (Input.GetAxisRaw("Vertical") < 0 && BTNDown == false)
 		{
+			Debug.Log("Searching for previous image");
 			Display = arrayCompiler.GetListPoint(ArrayPoint--);
 			rend.sharedMaterial = Display;
+			BTNDown = true;
+		}
+		else if (Input.GetAxisRaw("Vertical") == 0 && BTNDown == true)
+        {
+			BTNDown = false;
 		}
 
 		if (Input.GetAxisRaw("Exit") > 0)

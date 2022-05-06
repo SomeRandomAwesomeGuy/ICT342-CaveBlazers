@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Linq;
 
 public class ArrayCompiler : MonoBehaviour {
 
@@ -16,30 +16,31 @@ public class ArrayCompiler : MonoBehaviour {
 		Debug.Log("start the compilation");
 
 		DisplayList.Insert(0, alt);
-		
+
+		var loadedObjects = Resources.LoadAll("Displays");
+
 		//loads all objects in the folder and goes through each
-		foreach (Material DisplayToBe in Resources.LoadAll("Assets/Displays"))
+		foreach (Material DisplayToBe in loadedObjects)
         {
 			Debug.Log("run array fill");
 
 			//resets variables for each iteration of the loop
-			ArrayLength = DisplayList.Count - 1;
 			check = false;
 
 			//check that the object is not already in the array
-			foreach (Material Saved in DisplayList)
+			/*foreach (Material Saved in DisplayList)
             {
 				if (DisplayToBe == Saved)
                 {
 					check = true;
 					break;
                 }
-            }
+            }*/
 
 			//if object is not in the array then add it
 			if (check == false)
             {
-				DisplayList.Insert(ArrayLength++, DisplayToBe);
+				DisplayList.Add(DisplayToBe);
             }
         }
 	}
@@ -62,6 +63,8 @@ public class ArrayCompiler : MonoBehaviour {
         {
 			PointOfArray = 0;
         }
+
+		Debug.Log("searching for image number" + PointOfArray.ToString());
 
         Display = DisplayList[PointOfArray];
 
