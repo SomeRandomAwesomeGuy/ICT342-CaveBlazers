@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 176643989}
   - component: {fileID: 176643990}
   - component: {fileID: 176643994}
-  - component: {fileID: 176643993}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -212,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d7c8c3ce7d1b941a638b878ca60695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alt: {fileID: 21300000, guid: 97c242e72a8920a4295f9bd02744df76, type: 3}
+  alt: {fileID: 2100000, guid: aeb1f5899b0f1ea438ba3b55fda59ccf, type: 2}
 --- !u!114 &176643990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +241,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a732caa7d4992c4439aa1897af8feda2, type: 2}
+  - {fileID: 2100000, guid: 957b72cc4a218064ebca5e41ce0631cf, type: 2}
+  - {fileID: 2100000, guid: 957b72cc4a218064ebca5e41ce0631cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,33 +270,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 176643988}
   m_Mesh: {fileID: 4300000, guid: 4fe4cf200411c5443894301b209d0ee3, type: 3}
---- !u!114 &176643993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 176643988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 97c242e72a8920a4295f9bd02744df76, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!222 &176643994
 CanvasRenderer:
   m_ObjectHideFlags: 0

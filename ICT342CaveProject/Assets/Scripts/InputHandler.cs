@@ -7,8 +7,8 @@ public class InputHandler : MonoBehaviour {
 
 	public float RotationSpeed = 1;
 	public ArrayCompiler arrayCompiler;
-	Sprite Display;
-	private Image IMGComponent;
+	Material Display;
+	Renderer rend;
 	
 
 	int ArrayPoint = 0;
@@ -16,11 +16,13 @@ public class InputHandler : MonoBehaviour {
 	void Start () {
 		Display = arrayCompiler.GetListPoint(ArrayPoint);
 
-		IMGComponent = this.GetComponent<Image> ();
+		rend = GetComponent<Renderer>();
+		rend.enabled = true;
 		Display = arrayCompiler.GetListPoint(0);
+		rend.sharedMaterial = Display;
 
 		
-		IMGComponent.sprite = Display;
+		//IMGComponent.sprite = Display;
 	}
 	
 	// Update is called once per frame
@@ -39,13 +41,13 @@ public class InputHandler : MonoBehaviour {
 		if (Input.GetAxisRaw("Vertical") > 0)
 		{
 			Display = arrayCompiler.GetListPoint(ArrayPoint++);
-			IMGComponent.sprite = Display;
+			rend.sharedMaterial = Display;
 
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0)
 		{
 			Display = arrayCompiler.GetListPoint(ArrayPoint--);
-			IMGComponent.sprite = Display;
+			rend.sharedMaterial = Display;
 		}
 
 		if (Input.GetAxisRaw("Exit") > 0)
