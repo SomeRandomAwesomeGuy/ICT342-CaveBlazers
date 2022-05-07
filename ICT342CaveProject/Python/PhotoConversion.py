@@ -40,7 +40,9 @@ class PhotoConversion:
         # Converts the cubemap into an equirectangular
         return cube2equi(cubemap=image,
                          height=30735,
-                         width=3072)
+                         width=3072,
+                         cube_format="dice",
+                         )
 
     @staticmethod
     def crop_equirectangular(image):
