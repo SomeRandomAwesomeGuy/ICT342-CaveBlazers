@@ -7,18 +7,19 @@ public class InputHandler : MonoBehaviour {
 
 	public float RotationSpeed = 1;
 	public ArrayCompiler arrayCompiler;
-	Sprite Display;
-	private Image IMGComponent;
+	Texture Display;
+	Renderer rend;
+	bool BTNDown;
 
 	int ArrayPoint = 0;
 	// Use this for initialization
 	void Start () {
-		Display = arrayCompiler.GetListPoint(ArrayPoint);
-
-		IMGComponent = this.GetComponent<Image> ();
-		IMGComponent.sprite = Display;
+		rend = GetComponent<Renderer>();
+		rend.enabled = true;
+		Display = arrayCompiler.GetListPoint(0);
+		rend.material.SetTexture("_MainTex", Display);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -32,16 +33,24 @@ public class InputHandler : MonoBehaviour {
 		}
 
 		//switch image with "W" & "S"
-		if (Input.GetAxisRaw("Vertical") > 0)
+		if (Input.GetAxisRaw("Vertical") > 0 && BTNDown == false)
 		{
+			Debug.Log("Searching for next image");
 			Display = arrayCompiler.GetListPoint(ArrayPoint++);
-			IMGComponent.sprite = Display;
+			rend.material.SetTexture("_MainTex", Display);
+			BTNDown = true;
 
 		}
-		else if (Input.GetAxisRaw("Vertical") < 0)
+		else if (Input.GetAxisRaw("Vertical") < 0 && BTNDown == false)
 		{
+			Debug.Log("Searching for previous image");
 			Display = arrayCompiler.GetListPoint(ArrayPoint--);
-			IMGComponent.sprite = Display;
+			rend.material.SetTexture("_MainTex", Display);
+			BTNDown = true;
+		}
+		else if (Input.GetAxisRaw("Vertical") == 0 && BTNDown == true)
+        {
+			BTNDown = false;
 		}
 
 		if (Input.GetAxisRaw("Exit") > 0)
