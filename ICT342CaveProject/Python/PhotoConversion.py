@@ -48,8 +48,7 @@ class PhotoConversion:
     def crop_equirectangular(image):
         # Crops image in line
         width, height = image.size
-
-        image = image.crop((0, (height/2)+(width/10) , width , (height/2)-(width/10)))
+        image = image.crop((0, height/2-width/20, width, height/2+width/20))
 
         return image
         # Crop equirectangular Images to the correct dimensions
