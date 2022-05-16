@@ -1,7 +1,10 @@
 import numpy as np
+import ISR
+
 from PIL import Image
 from equilib import equi2equi
 from equilib import cube2equi
+
 
 """
  @software{pyequilib2021github,
@@ -38,11 +41,16 @@ class PhotoConversion:
     @staticmethod
     def cubemap_to_equirectangular(image):
         # Converts the cubemap into an equirectangular
-        return cube2equi(cubemap=image,
-                         height=30735,
-                         width=3072,
-                         cube_format="dice",
-                         )
+        width = image.width
+        height = int(width * (3 / 4))
+
+        image = np.asarray(image)
+        image = cube2equi(cubemap=image,
+                          width=width,
+                          height=height,
+                          cube_format="horizon",
+                          )
+        image = Image.fromarray(image)
 
     @staticmethod
     def crop_equirectangular(image):
