@@ -6,13 +6,14 @@ using System.Linq;
 public class ArrayCompiler : MonoBehaviour {
 
 	public List<Texture> DisplayList = new List<Texture>();
-    public List<Texture> DisplayListVideo = new List<Texture>();
+    public List<AnimationClip> DisplayListVideo = new List<AnimationClip>();
     bool check = false;
-	int ListLength;
+	public int ListLength;
     int VideoListLength;
+    public int totallength;
     public Texture alt;
 	Texture Display;
-    Texture VideoDisplay;
+    AnimationClip VideoDisplay;
 
 	// Use this for initialization
 	void Start () {
@@ -71,16 +72,16 @@ public class ArrayCompiler : MonoBehaviour {
             //if object is not in the array then add it
             if (check == false)
             {
-                DisplayListVideo.Add(DisplayVideobe as Texture);
+                DisplayListVideo.Add(DisplayVideobe as AnimationClip);
             }
         }
 
         VideoListLength = DisplayListVideo.Count;
     }
 
-    public Texture GetListPoint(int PointOfArray)
+    public (Texture, AnimationClip) GetListPoint(int PointOfArray)
     {
-        int totallength = ListLength + VideoListLength;
+        totallength = ListLength + VideoListLength;
         if (totallength > 1)
         {
             Debug.Log("list greater than one");
@@ -91,7 +92,7 @@ public class ArrayCompiler : MonoBehaviour {
                 if (PointOfArray >= ListLength && PointOfArray < totallength)
                 {
                     PointOfArray -= ListLength;
-                    Display = DisplayListVideo[PointOfArray];
+                    VideoDisplay = DisplayListVideo[PointOfArray];
                 }
             }
 
@@ -110,7 +111,7 @@ public class ArrayCompiler : MonoBehaviour {
                 else if (PointOfArray >= ListLength && PointOfArray < totallength)
                 {
                     PointOfArray -= ListLength;
-                    Display = DisplayListVideo[PointOfArray];
+                    VideoDisplay = DisplayListVideo[PointOfArray];
                 }                       
             }
                         
@@ -128,12 +129,6 @@ public class ArrayCompiler : MonoBehaviour {
             Display = alt;
         }
 
-        return Display;
-    }
-
-    public Texture ListPointVideo(int VideoPointOfArray)
-    {
-        return DisplayListVideo[VideoPointOfArray];
-
+        return (Display, VideoDisplay);
     }
 }

@@ -35,17 +35,34 @@ public class InputHandler : MonoBehaviour {
 		//switch image with "W" & "S"
 		if (Input.GetAxisRaw("Vertical") > 0 && BTNDown == false)
 		{
-			Debug.Log("Searching for next image");
-			Display = arrayCompiler.GetListPoint(ArrayPoint++);
-			rend.material.SetTexture("_MainTex", Display);
+            if (typecheck() == "Video")
+            {
+                Display = arrayCompiler.GetListPoint(ArrayPoint++);
+                //rend.VideoPlayer;
+            }
+            else if (typecheck() == "Image")
+            {
+                Display = arrayCompiler.GetListPoint(ArrayPoint++);
+                rend.material.SetTexture("_MainTex", Display.Item1);
+            }
+                
+            Debug.Log("Searching for next image");
 			BTNDown = true;
 
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0 && BTNDown == false)
 		{
-			Debug.Log("Searching for previous image");
-			Display = arrayCompiler.GetListPoint(ArrayPoint--);
-			rend.material.SetTexture("_MainTex", Display);
+            if (typecheck() == "Video")
+            {
+                Display = arrayCompiler.GetListPoint(ArrayPoint--);
+            }
+            else if (typecheck() == "Image")
+            {
+                Display = arrayCompiler.GetListPoint(ArrayPoint--);
+                rend.material.SetTexture("_MainTex", Display.Item1);
+            }
+
+            Debug.Log("Searching for previous image");
 			BTNDown = true;
 		}
 		else if (Input.GetAxisRaw("Vertical") == 0 && BTNDown == true)
@@ -58,4 +75,40 @@ public class InputHandler : MonoBehaviour {
 			Application.Quit();
         }
 	}
+
+    public string typecheck()
+    {
+        string variabletype = "";
+        int arraypointholder = ArrayPoint;
+        while (arraypointholder < 0)
+        {
+            arraypointholder += arrayCompiler.totallength;
+
+            if (arraypointholder >= arrayCompiler.ListLength && arraypointholder < arrayCompiler.totallength)
+            {
+                arraypointholder -= arrayCompiler.ListLength;
+                variabletype = "Video";
+            }
+        }
+
+        while (arraypointholder > (arrayCompiler.totallength - 1))
+        {
+            if (arraypointholder > arrayCompiler.totallength)
+            {
+                arraypointholder -= arrayCompiler.totallength;
+            }
+
+            else if (arraypointholder < arrayCompiler.ListLength)
+            {
+                variabletype = "Image";
+            }
+
+            else if (arraypointholder >= arrayCompiler.ListLength && arraypointholder < arrayCompiler.totallength)
+            {
+                arraypointholder -= arrayCompiler.ListLength;
+                variabletype = "Video";
+            }
+        }
+        return variabletype;
+    }
 }
