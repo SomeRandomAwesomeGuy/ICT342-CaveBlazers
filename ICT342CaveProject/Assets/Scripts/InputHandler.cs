@@ -9,6 +9,7 @@ public class InputHandler : MonoBehaviour {
 	public ArrayCompiler arrayCompiler;
 	Texture Display;
 	Renderer rend;
+    var vid;
 	bool BTNDown;
 
 	int ArrayPoint = 0;
@@ -18,6 +19,7 @@ public class InputHandler : MonoBehaviour {
 		rend.enabled = true;
 		Display = arrayCompiler.GetListPoint(0);
 		rend.material.SetTexture("_MainTex", Display);
+        vid = GetComponent<UnityEngine.Video.VideoPlayer>();
 	}
 
 	// Update is called once per frame
@@ -38,12 +40,15 @@ public class InputHandler : MonoBehaviour {
             if (typecheck() == "Video")
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint++);
-                //rend.VideoPlayer;
+                vid.VideoPlayer = Display.Item2;
+                vid.isLooping = true;
+                rend.material.SetTexture("_MainTex", null);
             }
             else if (typecheck() == "Image")
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint++);
                 rend.material.SetTexture("_MainTex", Display.Item1);
+                vid.VideoPlayer = null;
             }
                 
             Debug.Log("Searching for next image");
@@ -55,11 +60,15 @@ public class InputHandler : MonoBehaviour {
             if (typecheck() == "Video")
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint--);
+                vid.VideoPlayer = Display.Item2;
+                vid.isLooping = true;
+                rend.material.SetTexture("_MainTex", null);
             }
             else if (typecheck() == "Image")
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint--);
                 rend.material.SetTexture("_MainTex", Display.Item1);
+                vid.VideoPlayer = null;
             }
 
             Debug.Log("Searching for previous image");
