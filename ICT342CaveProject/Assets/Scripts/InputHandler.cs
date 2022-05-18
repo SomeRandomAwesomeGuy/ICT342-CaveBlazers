@@ -20,7 +20,7 @@ public class InputHandler : MonoBehaviour {
 		Display = arrayCompiler.GetListPoint(0);
 		rend.material.SetTexture("_MainTex", Display);
         vid = GetComponent<UnityEngine.Video.VideoPlayer>();
-	}
+    }
 
 	// Update is called once per frame
 	void Update () {

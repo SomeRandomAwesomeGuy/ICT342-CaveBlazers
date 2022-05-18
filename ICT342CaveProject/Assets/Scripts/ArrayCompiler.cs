@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.IO;
 
 public class ArrayCompiler : MonoBehaviour {
 
 	public List<Texture> DisplayList = new List<Texture>();
-    public List<AnimationClip> DisplayListVideo = new List<AnimationClip>();
+    public List<string> DisplayListVideo = new List<string>();
     bool check = false;
 	public int ListLength;
     int VideoListLength;
     public int totallength;
     public Texture alt;
 	Texture Display;
-    AnimationClip VideoDisplay;
+    string VideoDisplay;
 
 	// Use this for initialization
 	void Start () {
 		Debug.Log("start the compilation");
 
 		var loadedObjects = Resources.LoadAll("Displays", typeof(Texture));
-        var loadedObjectsVideo = Resources.LoadAll("VideoDisplay", typeof(Texture));
+        string loadedObjectsVideo = Path.GetFileName("Assets/Resources/VideoDisplay");
 
         //loads all objects in the folder and goes through each
         foreach (var DisplayToBe in loadedObjects)
@@ -51,10 +52,10 @@ public class ArrayCompiler : MonoBehaviour {
 		ListLength = DisplayList.Count;
         //DisplayList.Add(alt);
 
-        foreach (var DisplayVideobe in loadedObjectsVideo)
+        foreach (string DisplayVideobe in loadedObjectsVideo)
         {
             Debug.Log("run loop");
-            Debug.Log("add" + DisplayVideobe.name);
+            //Debug.Log("add" + DisplayVideobe.name);
 
             //resets variables for each iteration of the loop
             check = false;
@@ -72,7 +73,7 @@ public class ArrayCompiler : MonoBehaviour {
             //if object is not in the array then add it
             if (check == false)
             {
-                DisplayListVideo.Add(DisplayVideobe as AnimationClip);
+                DisplayListVideo.Add(DisplayVideobe);
             }
         }
 
@@ -130,7 +131,7 @@ public class ArrayCompiler : MonoBehaviour {
         return Display;
     }
 
-    public AnimationClip Getvideolist(int PointOfArray)
+    public string Getvideolist(int PointOfArray)
     {
         totallength = ListLength + VideoListLength;
         if (totallength > 1)
