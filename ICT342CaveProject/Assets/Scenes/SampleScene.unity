@@ -213,6 +213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayList: []
   DisplayListVideo: []
+  ListLength: 0
+  totallength: 0
   alt: {fileID: 2800000, guid: 97c242e72a8920a4295f9bd02744df76, type: 3}
 --- !u!114 &308793420
 MonoBehaviour:

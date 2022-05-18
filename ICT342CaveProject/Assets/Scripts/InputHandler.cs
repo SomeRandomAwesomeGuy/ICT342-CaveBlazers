@@ -9,7 +9,7 @@ public class InputHandler : MonoBehaviour {
 	public ArrayCompiler arrayCompiler;
 	Texture Display;
 	Renderer rend;
-    var vid;
+    //var vid;
 	bool BTNDown;
 
 	int ArrayPoint = 0;
@@ -19,7 +19,7 @@ public class InputHandler : MonoBehaviour {
 		rend.enabled = true;
 		Display = arrayCompiler.GetListPoint(0);
 		rend.material.SetTexture("_MainTex", Display);
-        vid = GetComponent<UnityEngine.Video.VideoPlayer>();
+        
     }
 
 	// Update is called once per frame
@@ -37,9 +37,10 @@ public class InputHandler : MonoBehaviour {
 		//switch image with "W" & "S"
 		if (Input.GetAxisRaw("Vertical") > 0 && BTNDown == false)
 		{
+            var vid = GetComponent<UnityEngine.Video.VideoPlayer>();
             if (typecheck() == "Video")
             {
-                vid.videoplayer = arrayCompiler.Getvideolist(ArrayPoint++);
+                vid.url = arrayCompiler.Getvideolist(ArrayPoint++);
                 vid.isLooping = true;
                 rend.material.SetTexture("_MainTex", null);
             }
@@ -47,7 +48,7 @@ public class InputHandler : MonoBehaviour {
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint++);
                 rend.material.SetTexture("_MainTex", Display);                
-                vid.VideoPlayer = null;
+                vid.url = null;
             }
                 
             Debug.Log("Searching for next image");
@@ -56,9 +57,10 @@ public class InputHandler : MonoBehaviour {
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0 && BTNDown == false)
 		{
+            var vid = GetComponent<UnityEngine.Video.VideoPlayer>();
             if (typecheck() == "Video")
             {
-                vid.videoplayer = arrayCompiler.Getvideolist(ArrayPoint--);
+                vid.url = arrayCompiler.Getvideolist(ArrayPoint--);
                 vid.isLooping = true;
                 rend.material.SetTexture("_MainTex", null);
             }
@@ -66,7 +68,7 @@ public class InputHandler : MonoBehaviour {
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint--);
                 rend.material.SetTexture("_MainTex", Display);
-                vid.VideoPlayer = null;
+                vid.url = null;
             }
 
             Debug.Log("Searching for previous image");

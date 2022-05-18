@@ -21,7 +21,7 @@ public class ArrayCompiler : MonoBehaviour {
 		Debug.Log("start the compilation");
 
 		var loadedObjects = Resources.LoadAll("Displays", typeof(Texture));
-        string loadedObjectsVideo = Path.GetFileName("Assets/Resources/VideoDisplay");
+        var loadedObjectsVideo = Directory.GetFiles("Assets/Resources/VideoDisplay");
 
         //loads all objects in the folder and goes through each
         foreach (var DisplayToBe in loadedObjects)
