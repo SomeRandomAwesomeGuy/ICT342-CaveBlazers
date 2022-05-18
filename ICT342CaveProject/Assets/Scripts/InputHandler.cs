@@ -40,14 +40,15 @@ public class InputHandler : MonoBehaviour {
             if (typecheck() == "Video")
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint++);
-                vid.VideoPlayer = Display.Item2;
+                //vid.VideoPlayer = Display.Item2;
+                //vid.videoplayer = newfunction;
                 vid.isLooping = true;
                 rend.material.SetTexture("_MainTex", null);
             }
             else if (typecheck() == "Image")
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint++);
-                rend.material.SetTexture("_MainTex", Display.Item1);
+                rend.material.SetTexture("_MainTex", Display.Item1);                
                 vid.VideoPlayer = null;
             }
                 
@@ -60,8 +61,9 @@ public class InputHandler : MonoBehaviour {
             if (typecheck() == "Video")
             {
                 Display = arrayCompiler.GetListPoint(ArrayPoint--);
-                vid.VideoPlayer = Display.Item2;
-                vid.isLooping = true;
+                //vid.VideoPlayer = Display.Item2;
+                //vid.isLooping = true;
+                //vid.videoplayer = newfunction;
                 rend.material.SetTexture("_MainTex", null);
             }
             else if (typecheck() == "Image")

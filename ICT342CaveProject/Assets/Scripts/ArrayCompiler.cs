@@ -79,7 +79,7 @@ public class ArrayCompiler : MonoBehaviour {
         VideoListLength = DisplayListVideo.Count;
     }
 
-    public (Texture, AnimationClip) GetListPoint(int PointOfArray)
+    public (Texture) GetListPoint(int PointOfArray)
     {
         totallength = ListLength + VideoListLength;
         if (totallength > 1)
@@ -129,6 +129,59 @@ public class ArrayCompiler : MonoBehaviour {
             Display = alt;
         }
 
-        return (Display, VideoDisplay);
+        return (Display);
+    }
+
+    public (AnimationClip) GetListPoint(int PointOfArray)
+    {
+        totallength = ListLength + VideoListLength;
+        if (totallength > 1)
+        {
+            Debug.Log("list greater than one");
+            while (PointOfArray < 0)
+            {
+                PointOfArray += totallength;
+
+                if (PointOfArray >= ListLength && PointOfArray < totallength)
+                {
+                    PointOfArray -= ListLength;
+                    //VideoDisplay = DisplayListVideo[PointOfArray];
+                }
+            }
+
+            while (PointOfArray > (totallength - 1))
+            {
+                if (PointOfArray > totallength)
+                {
+                    PointOfArray -= totallength;
+                }
+
+                else if (PointOfArray < ListLength)
+                {
+                    //Display = DisplayList[PointOfArray];
+                }
+
+                else if (PointOfArray >= ListLength && PointOfArray < totallength)
+                {
+                    PointOfArray -= ListLength;
+                    //VideoDisplay = DisplayListVideo[PointOfArray];
+                }
+            }
+
+        }
+        else
+        {
+            Debug.Log("list at one");
+            PointOfArray = 0;
+        }
+
+        Debug.Log("searching for image number" + PointOfArray.ToString());
+
+        if (Display == null)
+        {
+            Display = alt;
+        }
+
+        return (VideoDisplay);
     }
 }
