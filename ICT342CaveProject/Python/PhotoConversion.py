@@ -4,10 +4,10 @@ import numpy as np
 import ISR
 from ISR.models import RDN
 
-
 from PIL import Image
 from equilib import equi2equi
 from equilib import cube2equi
+from equilib import equi2cube
 
 """
  @software{pyequilib2021github,
@@ -54,10 +54,25 @@ class PhotoConversion:
         image = Image.fromarray(image)
 
     @staticmethod
+    def equirectangular_to_cubemap(image):
+        width = image.width
+        height = int(width * (3 / 4))
+        rots = {
+            'roll': 0.,
+            'pitch': np.pi / 4,
+            'yaw': np.pi / 4,
+        }
+
+        image = np.asarray(image)
+
+        image = equi2cube(equi=image, rots=rots, w_face=int(width / 4), cube_format="horizon")
+        image = Image.fromarray(image)
+
+    @staticmethod
     def crop_equirectangular(image):
         # Crops image in line
         width, height = image.size
-        image = image.crop((0, height/2-width/20, width, height/2+width/20))
+        image = image.crop((0, height / 2 - width / 20, width, height / 2 + width / 20))
 
         return image
         # Crop equirectangular Images to the correct dimensions
@@ -65,7 +80,7 @@ class PhotoConversion:
     @staticmethod
     def crop_rectilinear(image):
         width, height = image.size
-        ratio = height/width
+        ratio = height / width
 
         return image
 
@@ -99,17 +114,17 @@ for file in os.listdir("ICT342CaveProject/Import"):
             image = converter.isr(image)
             converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays/" + file)
 
-        if ratio == 3/4:
+        if ratio == 4 / 3:
             # Test cubemaps vs
             image = converter.crop_equirectangular(image)
             image = converter.isr(image)
             converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays/" + file)
 
-        if ratio == 1/4:
+        if ratio == 1 / 4:
             # Add handling for cubemap conversions later
             pass
 
-        if ratio == 4/1:
+        if ratio == 4 / 1:
             # Add handling for cubemap conversions later
             pass
 
