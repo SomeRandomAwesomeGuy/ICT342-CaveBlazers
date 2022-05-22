@@ -1,10 +1,13 @@
+import os
+
 import numpy as np
 import ISR
+from ISR.models import RDN
+
 
 from PIL import Image
 from equilib import equi2equi
 from equilib import cube2equi
-
 
 """
  @software{pyequilib2021github,
@@ -68,6 +71,15 @@ class PhotoConversion:
 
         return image
 
+    @staticmethod
+    def isr(image):
+        image = np.array(image)
+        rdn = RDN(weights='psnr-small')
+        image = rdn.predict(image)
+        image = Image.fromarray(image)
+
+        return image
+
 
 """
 Complete Panoramics
@@ -77,7 +89,32 @@ Step 3, Upscale image
 
 """
 
-
+filelist = os.listdir("ICT342CaveProject/Assets/Resources/Displays")
 converter = PhotoConversion()
-converter.crop_equirectangular()
+for file in os.listdir("ICT342CaveProject/Import"):
+    if file not in filelist:
+        image = converter.load_image(file)
+        width, height = image.size
+        ratio = height / width
+
+        if ratio == 2:
+            image = converter.crop_equirectangular(image)
+            image = converter.isr(image)
+            converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays")
+
+        if ratio == 3/4:
+            # Test cubemaps vs
+            image = converter.crop_equirectangular(image)
+            image = converter.isr(image)
+            converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays")
+
+        if ratio == 1/4:
+            # Add handling for cubemap conversions later
+            pass
+
+        if ratio == 4/1:
+            # Add handling for cubemap conversions later
+            pass
+
+
 
