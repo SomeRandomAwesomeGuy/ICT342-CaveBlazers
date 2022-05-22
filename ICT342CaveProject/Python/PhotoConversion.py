@@ -26,8 +26,6 @@ class PhotoConversion:
     @staticmethod
     def load_image(image):
         target_image = Image.open(image)
-        target_image = np.asarray(target_image)
-        target_image = np.transpose(target_image, (2, 0, 1))
         return target_image
 
     @staticmethod
@@ -89,24 +87,23 @@ Step 3, Upscale image
 
 """
 
-filelist = os.listdir("ICT342CaveProject/Assets/Resources/Displays")
+filelist = os.listdir("ICT342CaveProject/Assets/Resources/Displays/")
 converter = PhotoConversion()
 for file in os.listdir("ICT342CaveProject/Import"):
     if file not in filelist:
-        image = converter.load_image(file)
-        width, height = image.size
-        ratio = height / width
+        image = converter.load_image("ICT342CaveProject/Import/" + file)
+        ratio = image.width / image.height
 
         if ratio == 2:
             image = converter.crop_equirectangular(image)
             image = converter.isr(image)
-            converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays")
+            converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays/" + file)
 
         if ratio == 3/4:
             # Test cubemaps vs
             image = converter.crop_equirectangular(image)
             image = converter.isr(image)
-            converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays")
+            converter.save_image(image, "ICT342CaveProject/Assets/Resources/Displays/" + file)
 
         if ratio == 1/4:
             # Add handling for cubemap conversions later
