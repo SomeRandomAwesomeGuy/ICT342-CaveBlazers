@@ -61,24 +61,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Vuforia\Editor\Scripts\OpenSourceInitializer.cs" />
-    <None Include="Assets\Editor\Vuforia\VuforiaMars_ModelTarget\authoringinfo.xml" />
-    <None Include="Assets\Editor\Vuforia\VuforiaMars_VuMark\authoringinfo.xml" />
-    <None Include="Assets\Editor\Vuforia\Emulator\VuforiaEmulator.xml" />
-    <None Include="Assets\Editor\Vuforia\TargetsetData\VuforiaMars_Object_info.xml" />
-    <None Include="Assets\Editor\Vuforia\ForPrint\ModelTarget\readme_3dprint.txt" />
-    <None Include="Assets\Editor\Vuforia\CylinderTargetTextures\VuforiaMars_Images\authoringinfo.xml" />
+    <Compile Include="Assets\getReal3D\Editor\CameraUpdaterEditors.cs" />
+    <Compile Include="Assets\getReal3D\Editor\DeprecatedMonoBehaviourEditor.cs" />
+    <Compile Include="Assets\getReal3D\Editor\getReal3D_Menu.cs" />
+    <Compile Include="Assets\getReal3D\Editor\getReal3D_SceneChecker.cs" />
+    <Compile Include="Assets\getReal3D\Editor\MultiClusterNavigationEditor.cs" />
+    <Compile Include="Assets\getReal3D\Editor\NavigationEditor.cs" />
+    <Compile Include="Assets\getReal3D\Editor\NavigationHelperEditor.cs" />
+    <Compile Include="Assets\getReal3D\Editor\PlayerInputsProxyEditor.cs" />
+    <Compile Include="Assets\getReal3D\HMDs\SteamVR\Editor\SteamVR_Editor.cs" />
+    <Compile Include="Assets\getReal3D\HMDs\SteamVR\Editor\SteamVR_Preferences.cs" />
+    <Compile Include="Assets\getReal3D\HMDs\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
+    <Compile Include="Assets\getReal3D\HMDs\SteamVR\Editor\SteamVR_Settings.cs" />
+    <Compile Include="Assets\getReal3D\HMDs\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
+    <Compile Include="Assets\getReal3D\HMDs\SteamVR\Editor\SteamVR_Update.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/17.05.22 Build/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/17.05.22 Build/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/17.05.22 Build/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/17.05.22 Build/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -352,6 +359,12 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="getReal3D">
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/17.05.22 Build/ICT342-CaveBlazers-main/ICT342CaveProject/Assets/getReal3D/getReal3D.dll</HintPath>
+    </Reference>
+    <Reference Include="EditorUtils">
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/17.05.22 Build/ICT342-CaveBlazers-main/ICT342CaveProject/Assets/getReal3D/Editor/EditorUtils.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

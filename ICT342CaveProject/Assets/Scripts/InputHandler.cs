@@ -38,6 +38,7 @@ public class InputHandler : MonoBehaviour {
 		if (Input.GetAxisRaw("Vertical") > 0 && BTNDown == false)
 		{
             var vid = GetComponent<UnityEngine.Video.VideoPlayer>();
+            Debug.Log("The display type is " + typecheck());
             if (typecheck() == "Video")
             {
                 vid.url = arrayCompiler.Getvideolist(ArrayPoint++);
@@ -57,6 +58,7 @@ public class InputHandler : MonoBehaviour {
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0 && BTNDown == false)
 		{
+            Debug.Log("The display type is " + typecheck());
             var vid = GetComponent<UnityEngine.Video.VideoPlayer>();
             if (typecheck() == "Video")
             {
