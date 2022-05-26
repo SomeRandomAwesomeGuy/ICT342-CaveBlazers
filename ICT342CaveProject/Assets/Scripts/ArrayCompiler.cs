@@ -8,92 +8,66 @@ public class ArrayCompiler : MonoBehaviour {
 
 	public List<Texture> DisplayList = new List<Texture>();
     public List<string> DisplayListVideo = new List<string>();
-    bool check = false;
+    bool Check = false;
 	public int ListLength;
     int VideoListLength;
-    public int totallength;
+    public int TotalLength;
     public Texture alt;
 	Texture Display;
     string VideoDisplay;
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log("start the compilation");
-
 		var loadedObjects = Resources.LoadAll("Displays", typeof(Texture));
         var loadedObjectsVideo = Directory.GetFiles("Assets/Resources/VideoDisplay");
 
         //loads all objects in the folder and goes through each
         foreach (var DisplayToBe in loadedObjects)
         {
-			Debug.Log("run loop");
-			Debug.Log("add" + DisplayToBe.name);
-
 			//resets variables for each iteration of the loop
-			check = false;
-
-			//check that the object is not already in the array
-			/*foreach (Material Saved in DisplayList)
-            {
-				if (DisplayToBe == Saved)
-                {
-					check = true;
-					break;
-                }
-            }*/
+			Check = false;
 
 			//if object is not in the array then add it
-			if (check == false)
+			if (Check == false)
             {
 				DisplayList.Add(DisplayToBe as Texture);
             }
         }
 
 		ListLength = DisplayList.Count;
-        //DisplayList.Add(alt);
 
-        foreach (string DisplayVideobe in loadedObjectsVideo)
+        foreach (string DisplayVideoBe in loadedObjectsVideo)
         {
             Debug.Log("run loop");
-            //Debug.Log("add" + DisplayVideobe.name);
 
             //resets variables for each iteration of the loop
-            check = false;
-
-            //check that the object is not already in the array
-            /*foreach (Material Saved in DisplayList)
-            {
-				if (DisplayToBe == Saved)
-                {
-					check = true;
-					break;
-                }
-            }*/
+            Check = false;
 
             //if object is not in the array then add it
-            if (check == false)
+            if (Check == false)
             {
-                DisplayListVideo.Add(DisplayVideobe);
+                DisplayListVideo.Add(DisplayVideoBe);
             }
         }
 
         VideoListLength = DisplayListVideo.Count;
     }
 
+    //retrive the image from the array to be displayed
     public Texture GetListPoint(int PointOfArray)
     {
-        totallength = ListLength + VideoListLength;
-        if (totallength > 1)
+        TotalLength = ListLength + VideoListLength;
+        if (TotalLength > 1)
         {
             Debug.Log("list greater than one");
             while (PointOfArray < 0)
             {
-                PointOfArray += totallength;
+                PointOfArray += TotalLength;
             }
 
-            while (PointOfArray > totallength)
+            while (PointOfArray > TotalLength)
             {
-               PointOfArray -= totallength;                     
+               PointOfArray -= TotalLength;                     
             }
 
             if (PointOfArray < ListLength)
@@ -108,8 +82,7 @@ public class ArrayCompiler : MonoBehaviour {
             PointOfArray = 0;
         }
 
-        Debug.Log("searching for image number" + PointOfArray.ToString());
-
+        //if there is no image to display display alternative
         if (Display == null)
         {
             Display = alt;
@@ -118,25 +91,24 @@ public class ArrayCompiler : MonoBehaviour {
         return Display;
     }
 
+    //retrive the video from the array to be displayed
     public string Getvideolist(int PointOfArray)
     {
-        totallength = ListLength + VideoListLength;
-        if (totallength > 1)
+        TotalLength = ListLength + VideoListLength;
+        if (TotalLength > 1)
         {
             Debug.Log("list greater than one");
             while (PointOfArray < 0)
             {
-                PointOfArray += totallength;
-
-                
+                PointOfArray += TotalLength; 
             }
 
-            while (PointOfArray > (totallength - 1))
+            while (PointOfArray > (TotalLength - 1))
             {
-                PointOfArray -= totallength;
+                PointOfArray -= TotalLength;
             }
 
-            if (PointOfArray >= ListLength && PointOfArray < totallength)
+            if (PointOfArray >= ListLength && PointOfArray < TotalLength)
             {
                 PointOfArray -= ListLength;
                 VideoDisplay = DisplayListVideo[PointOfArray];
@@ -148,8 +120,6 @@ public class ArrayCompiler : MonoBehaviour {
             Debug.Log("list at one");
             PointOfArray = 0;
         }
-
-        Debug.Log("searching for image number" + PointOfArray.ToString());
         
         return VideoDisplay;
     }

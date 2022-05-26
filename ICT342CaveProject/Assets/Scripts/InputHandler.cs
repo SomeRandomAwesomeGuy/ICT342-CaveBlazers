@@ -9,17 +9,15 @@ public class InputHandler : MonoBehaviour {
 	public ArrayCompiler arrayCompiler;
 	Texture Display;
 	Renderer rend;
-    //var vid;
 	bool BTNDown;
+    int ArrayPoint = 0;
 
-	int ArrayPoint = 0;
 	// Use this for initialization
 	void Start () {
 		rend = GetComponent<Renderer>();
 		rend.enabled = true;
 		Display = arrayCompiler.GetListPoint(0);
 		rend.material.SetTexture("_MainTex", Display);
-        
     }
 
 	// Update is called once per frame
@@ -38,81 +36,90 @@ public class InputHandler : MonoBehaviour {
 		if (Input.GetAxisRaw("Vertical") > 0 && BTNDown == false)
 		{
             var vid = GetComponent<UnityEngine.Video.VideoPlayer>();
-            Debug.Log("The display type is " + typecheck());
-            if (typecheck() == "Video")
+            //determine what type of media to show, image or video
+            if (TypeCheck() == "Video")
             {
+                //set video and remove image
                 vid.url = arrayCompiler.Getvideolist(ArrayPoint++);
                 vid.isLooping = true;
                 rend.material.SetTexture("_MainTex", null);
             }
-            else if (typecheck() == "Image")
+            else if (TypeCheck() == "Image")
             {
+                //set image and remove video
                 Display = arrayCompiler.GetListPoint(ArrayPoint++);
                 rend.material.SetTexture("_MainTex", Display);                
                 vid.url = null;
             }
                 
-            Debug.Log("Searching for next image");
+            //stop code from repeating
 			BTNDown = true;
 
 		}
 		else if (Input.GetAxisRaw("Vertical") < 0 && BTNDown == false)
 		{
-            Debug.Log("The display type is " + typecheck());
             var vid = GetComponent<UnityEngine.Video.VideoPlayer>();
-            if (typecheck() == "Video")
+            //determine what type of media to show, image or video
+            if (TypeCheck() == "Video")
             {
+                // set video and remove image
                 vid.url = arrayCompiler.Getvideolist(ArrayPoint--);
                 vid.isLooping = true;
                 rend.material.SetTexture("_MainTex", null);
             }
-            else if (typecheck() == "Image")
+            else if (TypeCheck() == "Image")
             {
+                //set image and remove video
                 Display = arrayCompiler.GetListPoint(ArrayPoint--);
                 rend.material.SetTexture("_MainTex", Display);
                 vid.url = null;
             }
 
-            Debug.Log("Searching for previous image");
+            //stop code from repeating
 			BTNDown = true;
 		}
 		else if (Input.GetAxisRaw("Vertical") == 0 && BTNDown == true)
         {
+            //allow use of "W" and "S"
 			BTNDown = false;
 		}
 
+        // end the use of this application and exit by using "esc" or controller "X"
 		if (Input.GetAxisRaw("Exit") > 0)
         {
 			Application.Quit();
         }
 	}
 
-    public string typecheck()
+    //calculates whether the type of media displayed should be a video or an image 
+    public string TypeCheck()
     {
-        string variabletype = "";
-        int arraypointholder = ArrayPoint;
-        while (arraypointholder < 0)
+        string VariableType = "";
+        int ArrayPointHolder = ArrayPoint;
+
+        //while the point in the array is less than 0 add the length of both arrays to it repeatedly
+        while (ArrayPointHolder < 0)
         {
-            arraypointholder += arrayCompiler.totallength;
+            ArrayPointHolder += arrayCompiler.totallength;
         }
 
-        while (arraypointholder > (arrayCompiler.totallength - 1))
+        //while the point in the array is greather than the length of both arrays to it repeatedly minus that length repeatedly
+        while (ArrayPointHolder > (arrayCompiler.totallength))
         {
-            if (arraypointholder > arrayCompiler.totallength)
-            {
-                arraypointholder -= arrayCompiler.totallength;
-            }
+            ArrayPointHolder -= arrayCompiler.totallength;
         }
 
-        if (arraypointholder < arrayCompiler.ListLength)
+        //if the point in the array is less than the length of the image list the type of media to be returned will be an image
+        if (ArrayPointHolder < arrayCompiler.ListLength)
         {
-            variabletype = "Image";
+            VariableType = "Image";
+        }
+        //if the point in the array is greater than the length of the image list but less than the length of both lists combined then the type of media to be returned will be a video
+        else if (ArrayPointHolder >= arrayCompiler.ListLength && ArrayPointHolder < arrayCompiler.totallength)
+        {
+            VariableType = "Video";
         }
 
-        else if (arraypointholder >= arrayCompiler.ListLength && arraypointholder < arrayCompiler.totallength)
-        {
-            variabletype = "Video";
-        }
-        return variabletype;
+        return VariableType;
     }
 }
