@@ -89,31 +89,18 @@ public class ArrayCompiler : MonoBehaviour {
             while (PointOfArray < 0)
             {
                 PointOfArray += totallength;
-
-                if (PointOfArray >= ListLength && PointOfArray < totallength)
-                {
-                    PointOfArray -= ListLength;
-                }
             }
 
-            while (PointOfArray > (totallength - 1))
+            while (PointOfArray > totallength)
             {
-                if (PointOfArray > totallength) 
-                {
-                    PointOfArray -= totallength;
-                }
-
-                else if (PointOfArray < ListLength)
-                {
-                    Display = DisplayList[PointOfArray];
-                }
-
-                else if (PointOfArray >= ListLength && PointOfArray < totallength)
-                {
-                    PointOfArray -= ListLength;
-                }                       
+               PointOfArray -= totallength;                     
             }
-                        
+
+            if (PointOfArray < ListLength)
+            {
+                Display = DisplayList[PointOfArray];
+            }
+
         }
         else
         {
@@ -141,30 +128,18 @@ public class ArrayCompiler : MonoBehaviour {
             {
                 PointOfArray += totallength;
 
-                if (PointOfArray >= ListLength && PointOfArray < totallength)
-                {
-                    PointOfArray -= ListLength;
-                    VideoDisplay = DisplayListVideo[PointOfArray];
-                }
+                
             }
 
             while (PointOfArray > (totallength - 1))
             {
-                if (PointOfArray > totallength)
-                {
-                    PointOfArray -= totallength;
-                }
+                PointOfArray -= totallength;
+            }
 
-                else if (PointOfArray < ListLength)
-                {
-                    //Display = DisplayList[PointOfArray];
-                }
-
-                else if (PointOfArray >= ListLength && PointOfArray < totallength)
-                {
-                    PointOfArray -= ListLength;
-                    VideoDisplay = DisplayListVideo[PointOfArray];
-                }
+            if (PointOfArray >= ListLength && PointOfArray < totallength)
+            {
+                PointOfArray -= ListLength;
+                VideoDisplay = DisplayListVideo[PointOfArray];
             }
 
         }

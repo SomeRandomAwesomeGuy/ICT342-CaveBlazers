@@ -94,12 +94,6 @@ public class InputHandler : MonoBehaviour {
         while (arraypointholder < 0)
         {
             arraypointholder += arrayCompiler.totallength;
-
-            if (arraypointholder >= arrayCompiler.ListLength && arraypointholder < arrayCompiler.totallength)
-            {
-                arraypointholder -= arrayCompiler.ListLength;
-                variabletype = "Video";
-            }
         }
 
         while (arraypointholder > (arrayCompiler.totallength - 1))
@@ -108,17 +102,16 @@ public class InputHandler : MonoBehaviour {
             {
                 arraypointholder -= arrayCompiler.totallength;
             }
+        }
 
-            else if (arraypointholder < arrayCompiler.ListLength)
-            {
-                variabletype = "Image";
-            }
+        if (arraypointholder < arrayCompiler.ListLength)
+        {
+            variabletype = "Image";
+        }
 
-            else if (arraypointholder >= arrayCompiler.ListLength && arraypointholder < arrayCompiler.totallength)
-            {
-                arraypointholder -= arrayCompiler.ListLength;
-                variabletype = "Video";
-            }
+        else if (arraypointholder >= arrayCompiler.ListLength && arraypointholder < arrayCompiler.totallength)
+        {
+            variabletype = "Video";
         }
         return variabletype;
     }
