@@ -129,7 +129,7 @@ public class getRealWalkthruController
         if (m_motor != null && m_motor.enabled && m_motor.canControl)
         {
             m_motor.inputMoveDirection = m_transform.rotation * directionVector;
-            m_motor.inputJump = getReal3D.Input.GetButtonDown(jumpButton);
+            //m_motor.inputJump = getReal3D.Input.GetButtonDown(jumpButton);
         }
         else if (m_controller != null && m_controller.enabled)
         {

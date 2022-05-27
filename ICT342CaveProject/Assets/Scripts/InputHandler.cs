@@ -100,13 +100,13 @@ public class InputHandler : MonoBehaviour {
         //while the point in the array is less than 0 add the length of both arrays to it repeatedly
         while (ArrayPointHolder < 0)
         {
-            ArrayPointHolder += arrayCompiler.totallength;
+            ArrayPointHolder += arrayCompiler.TotalLength;
         }
 
         //while the point in the array is greather than the length of both arrays to it repeatedly minus that length repeatedly
-        while (ArrayPointHolder > (arrayCompiler.totallength))
+        while (ArrayPointHolder > (arrayCompiler.TotalLength))
         {
-            ArrayPointHolder -= arrayCompiler.totallength;
+            ArrayPointHolder -= arrayCompiler.TotalLength;
         }
 
         //if the point in the array is less than the length of the image list the type of media to be returned will be an image
@@ -115,7 +115,7 @@ public class InputHandler : MonoBehaviour {
             VariableType = "Image";
         }
         //if the point in the array is greater than the length of the image list but less than the length of both lists combined then the type of media to be returned will be a video
-        else if (ArrayPointHolder >= arrayCompiler.ListLength && ArrayPointHolder < arrayCompiler.totallength)
+        else if (ArrayPointHolder >= arrayCompiler.ListLength && ArrayPointHolder < arrayCompiler.TotalLength)
         {
             VariableType = "Video";
         }
