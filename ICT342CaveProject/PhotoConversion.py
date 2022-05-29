@@ -87,7 +87,7 @@ def main():
             ratio = image.width / image.height
 
             if ratio == 2:
-                image = equirectangular_to_cubemap(image)
+                #image = equirectangular_to_cubemap(image)
                 image = crop_equirectangular(image)
                 image = isr(image)
                 save_image(image, os.getcwd() + "\\Assets\\Resources\\Displays\\" + "2" + file)
@@ -99,6 +99,7 @@ def main():
 
             else:
                 image = isr(image)
+
 
 if __name__ == '__main__':
     main()
