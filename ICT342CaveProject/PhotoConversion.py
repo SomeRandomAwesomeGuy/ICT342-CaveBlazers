@@ -4,6 +4,7 @@ from ISR.models import RDN
 from PIL import Image
 from equilib.cube2equi.base import cube2equi
 from py360convert import e2c
+from py360convert import e2p
 
 
 import os
@@ -35,13 +36,6 @@ def cubemap_to_equirectangular(image):
 
 def equirectangular_to_cubemap(image):
     width = image.width
-    height = int(width * (3 / 4))
-    rots = {
-        'roll': 0.,
-        'pitch': np.pi / 4,
-        'yaw': np.pi / 4,
-    }
-
     image = np.asarray(image)
 
     image = e2c(e_img=image,
@@ -50,7 +44,14 @@ def equirectangular_to_cubemap(image):
                 mode="bilinear")
 
     image = Image.fromarray(image)
+    return image
 
+
+def equirectangular_to_perspective(image):
+    width = image.width
+    image = np.asarray(image)
+    image = e2p(e_img=image, fov_deg=[160, 30], out_hw=[1500, 10000], u_deg=int(0), v_deg=int(0))
+    image = Image.fromarray(image)
     return image
 
 
@@ -80,25 +81,23 @@ def isr(image):
 
 
 def main():
-    filelist = os.listdir(os.getcwd() + "\\Assets\\Resources\\Displays")
     for file in os.listdir(os.getcwd() + "\\Import"):
-        if file not in filelist:
-            image = load_image(os.getcwd() + "\\Import\\" + file)
-            ratio = image.width / image.height
+        image = load_image(os.getcwd() + "\\Import\\" + file)
+        ratio = image.width / image.height
 
-            if ratio == 2:
-                #image = equirectangular_to_cubemap(image)
-                image = crop_equirectangular(image)
-                image = isr(image)
-                save_image(image, os.getcwd() + "\\Assets\\Resources\\Displays\\" + "2" + file)
+        if ratio == 2:
+            image = equirectangular_to_cubemap(image)
+            image = crop_equirectangular(image)
+            #image = isr(image)
+            save_image(image, os.getcwd() + "\\Assets\\Resources\\Displays\\" + file)
 
-            elif ratio == 4 / 3:
-                image = crop_equirectangular(image)
-                image = isr(image)
-                save_image(image, os.getcwd() + "\\Assets\\Resources\\Displays\\" + "2" +   file)
+        elif ratio == 4 / 3:
+            image = crop_equirectangular(image)
+            #image = isr(image)
+            save_image(image, os.getcwd() + "\\Assets\\Resources\\Displays\\" + file)
 
-            else:
-                image = isr(image)
+        else:
+            image = isr(image)
 
 
 if __name__ == '__main__':
