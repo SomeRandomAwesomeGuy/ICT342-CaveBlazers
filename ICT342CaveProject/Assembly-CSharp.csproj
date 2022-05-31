@@ -199,16 +199,16 @@
     <None Include="Assets\Shaders\FlipShaderSurface.shader" />
     <None Include="Assets\getReal3D\Resources\editor_config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/Working Builds/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers/ICT342CaveProject/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/Working Builds/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/Working Builds/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers/ICT342CaveProject/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/Working Builds/ICT342-CaveBlazers-main/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers/ICT342CaveProject/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -412,7 +412,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="getReal3D">
-      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/Working Builds/ICT342-CaveBlazers-main/ICT342CaveProject/Assets/getReal3D/getReal3D.dll</HintPath>
+      <HintPath>C:/Users/Darcy/Desktop/ICT342/Group Project/ICT342-CaveBlazers/ICT342CaveProject/Assets/getReal3D/getReal3D.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Darcy/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
